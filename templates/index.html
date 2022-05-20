@@ -1,0 +1,285 @@
+{% extends "base.html" %}
+
+  <title>{% block title %} Inicio {% endblock %}</title>
+
+        {% block navbar %}
+          <li><a class="nav-link scrollto active" href="#hero">Inicio</a></li>
+          <li><a class="nav-link scrollto" href="#about">Nosotros</a></li>
+          <li><a class="nav-link scrollto" href="#services">Especialidades</a></li>
+          <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+        {% endblock %}
+
+      {% block button %}
+      {% if request.user.is_authenticated %}
+      <a href="{% url 'turnos:account' %}" class="appointment-btn scrollto">Mi Perfil</a>
+      <a href="{% url 'turnos:logout' %}" class="appointment-btn scrollto">Cerrar Sesion</a>
+      {% else %}
+      <a href="{% url 'turnos:login' %}" class="appointment-btn scrollto">Iniciar Sesion</a>
+      <a href="{% url 'turnos:register' %}" class="appointment-btn scrollto">Registrarse</a>
+      {% endif %}
+      {% endblock %}
+
+
+{% block content %}
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="d-flex align-items-center">
+    <div class="container">
+      <h1>Bienvenidos a Turnos Web</h1>
+      <h2>Somos el equipo del Grupo 7 del Informatorio</h2>
+    </div>
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Why Us Section ======= -->
+    <section id="why-us" class="why-us">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-lg-4 d-flex align-items-stretch">
+            <div class="content">
+              <h3>¿Por qué elegir Turnos Web?</h3>
+              <p>
+                Aquí podrás encontrar tu turno sin moverte de tu casa.
+                A cualquier hora, cualquier día y desde cualquier lugar
+              </p>
+              <div class="text-center">
+                <h4 class="more-btn">En 3 simples pasos <i class="bx bx-chevron-right"></i></h4>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8 d-flex align-items-stretch">
+            <div class="icon-boxes d-flex flex-column justify-content-center">
+              <div class="row">
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="far fa-address-card"></i>
+                    <h4>Primer Paso</h4>
+                    <p>Iniciá sesión o registrate si es tu primer ingreso.</p>
+                    <i class="bx bx-chevron-right"></i><i class="bx bx-chevron-right"></i>
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="fas fa-search"></i>
+                    <h4>Segundo Paso</h4>
+                    <p>Elegí tu médico. Podes filtrar por especialidad si no lo encontras.</p>
+                    <i class="bx bx-chevron-right"></i><i class="bx bx-chevron-right"></i>
+                  </div>
+                </div>
+                <div class="col-xl-4 d-flex align-items-stretch">
+                  <div class="icon-box mt-4 mt-xl-0">
+                    <i class="fas fa-calendar-check"></i>
+                    <h4>Tercer Paso</h4>
+                    <p>Elegí día y horario y confirmá tu turno.</p>
+                    <i class="bx bx-chevron-right"></i><i class="bx bx-chevron-right"></i>
+                  </div>
+                </div>
+              </div>
+            </div><!-- End .content-->
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End Why Us Section -->
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-xl-5 col-lg-6 video-box d-flex justify-content-center align-items-stretch position-relative">
+          <!--a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox play-btn mb-4"></a-->
+          </div>
+
+          <div class="col-xl-7 col-lg-6 icon-boxes d-flex flex-column align-items-stretch justify-content-center py-5 px-lg-5">
+            <h3>Somos alumnos del Informatorio y buscamos simplificar el acceso a la salud</h3>
+            <p>Nuestra plataforma de salud está centrada en brindar al paciente y su familia un nivel médico de calidad.</p>
+
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-clinic-medical"></i></div>
+              <h4 class="title">Variedad de Profesionales</h4>
+              <p class="description">Accedé a la más amplia gama de profesionales de la salud.</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-hand-holding-medical"></i></div>
+              <h4 class="title">Compromiso con la comunidad</h4>
+              <p class="description">Nuestro objetivo es llevar a la comunidad un servicio médico de calidad.</p>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-users"></i></div>
+              <h4 class="title">Accesibilidad</h4>
+              <p class="description">Buscamos permitir el acceso a la salud a todos los chaqueños.</p>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Section -->
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Especialidades</h2>
+          <p>Te mostramos las especialidades médicas a las que podes acceder a través de nuestra plataforma médica.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-heartbeat"></i></div>
+              <h4>Cardiología</h4>
+              <p>Brindamos profesionales de excelencia en el área cardiológica, además de contar con el equipamiento necesario para realizar todo tipo de estudios.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-user-md"></i></div>
+              <h4>Clínica Médica</h4>
+              <p>Nuestro servicio de clínica médica cuenta con un equipo de profesionales médicos altamente capacitados que se ocupan de la atención integral del paciente; guiándolo dentro y fuera del ámbito hospitalario.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-tooth"></i></div>
+              <h4>Odontología</h4>
+              <p>Brindamos servicio odontológico integral y especializado de calidad con profesionales de alto nivel comprometidos con el cuidado de la salud bucal.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-female"></i></div>
+              <h4>Ginecología</h4>
+              <p>El servicio de ginecología atiende a la mujer en todas las etapas de su vida: adolescencia, adultez, premenopausia y postmenopausia.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-brain"></i></div>
+              <h4>Neurología</h4>
+              <p>El departamento de neurología está integrado por neurólogos de reconocida trayectoria e idoneidad en la especialidad.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4">
+            <div class="icon-box">
+              <div class="icon"><i class="fas fa-bone"></i></div>
+              <h4>Traumatología</h4>
+              <p>El servicio de ortopedia y traumatología brinda diagnóstico y tratamiento para las enfermedades del aparato ósteo-artículo-muscular.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
+
+    <!-- ======= Frequently Asked Questions Section ======= -->
+    <section id="faq" class="faq section-bg">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Preguntas Frecuentes</h2>
+        </div>
+
+        <div class="faq-list">
+          <ul>
+            <li data-aos="fade-up">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" class="collapse" data-bs-target="#faq-list-1">¿Necesito registrarme para poder sacar un turno? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-1" class="collapse show" data-bs-parent=".faq-list">
+                <p>
+                  Si!! Para poder reservar un turno con cualquiera de nuestros médicos necesitas registrarte e iniciar sesión, ya que necesitamos tus datos personales para validarlo.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="100">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-2" class="collapsed">¿Puedo cancelar o cambiar un turno reservado? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-2" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Si, podes realizar cualquiera de estas dos opciones accediendo a "Mis Turnos" desde tu perfil. En el caso que quieras cambiarlo, podrás elegir uno nuevo entre los disponibles.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="200">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-3" class="collapsed">¿El servicio tiene algun costo? ¿Debo abonar para reservar un turno? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-3" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  No, el servicio es totalmente gratuito. Podes reservar y editar tu turno cuantas veces quieras, y solo abonas al acudir a la consulta.
+                </p>
+              </div>
+            </li>
+
+            <li data-aos="fade-up" data-aos-delay="300">
+              <i class="bx bx-help-circle icon-help"></i> <a data-bs-toggle="collapse" data-bs-target="#faq-list-4" class="collapsed">¿Como hago si quiero tener este sistema disponible en mi consultorio? <i class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+              <div id="faq-list-4" class="collapse" data-bs-parent=".faq-list">
+                <p>
+                  Si queres contar con nuestros servicios de administración de turnos, contactanos por cualquiera de los medios disponibles en la sección contacto.
+                </p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+      </div>
+    </section><!-- End Frequently Asked Questions Section -->
+
+    <!-- ======= Contact Section ======= -->
+    <section id="contact" class="contact">
+      <div class="container">
+
+        <div class="section-title">
+          <h2>Contacto</h2>
+        </div>
+      </div>
+
+      <div>
+        <iframe style="border:0; width: 100%; height: 350px;" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d885.0634671672719!2d-58.978988206946596!3d-27.461354788839234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94450ce8b2457993:0xb6cc63aac9bf8073!2sInformatorio!5e0!3m2!1ses!2sar!4v1614552258794!5m2!1ses!2sar" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div class="container">
+        <div class="row mt-5">
+
+          <div class="col-lg-4">
+            <div class="info">
+              <div class="address">
+                <i class="bi bi-geo-alt"></i>
+                <h4>Localización:</h4>
+                <p>Arturo Illia 1.055, Resistencia, Chaco H3504ATE</p>
+              </div>
+
+              <div class="email">
+                <i class="bi bi-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@turnosgrupo7.com.ar</p>
+              </div>
+
+              <div class="phone">
+                <i class="bi bi-phone"></i>
+                <h4>Teléfono:</h4>
+                <p>+54 0362 4455 734</p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Contact Section -->
+
+  </main><!-- End #main -->
+
+{% endblock %}

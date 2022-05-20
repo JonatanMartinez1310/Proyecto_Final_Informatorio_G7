@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+<title>{% block title %} Actualizar Datos {% endblock %}</title>
+
+      {% block navbar %}
+        <li><a class="nav-link scrollto active" href="{% url 'turnos:index' %}#hero">Inicio</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#about">Nosotros</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#services">Especialidades</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#contact">Contacto</a></li>
+      {% endblock %}
+
+
+
+    {% block button %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'turnos:account' %}" class="appointment-btn scrollto">Mi Perfil</a>
+    <a href="{% url 'turnos:logout' %}" class="appointment-btn scrollto">Cerrar Sesion</a>
+    {% else %}
+    <a href="{% url 'turnos:login' %}" class="appointment-btn scrollto">Iniciar Sesion</a>
+    <a href="{% url 'turnos:register' %}" class="appointment-btn scrollto">Registrarse</a>
+    {% endif %}
+    {% endblock %}
+
+
+{% block content %}
+{% if request.user.is_authenticated %}
+    <!-- eliminando la referencia a la class register al div, -->
+    <div>
+        <!-- eliminando position-absolute start-50 top-50 translate-middle -->
+        <!-- y agregando w-100 container-fluid, el formulario queda sin fondo pero no se superponen los demas bloques-->
+        <main class="form-signin w-100 container-fluid">
+            <h3 style="text-allign: center;">PERFIL DE USUARIO</h3>
+            <h6 style="text-allign: center;">Bienvenido/a {{ usuario }}, aquí puedes actualizar tu perfil.</h6>
+            <form class ="form" method="POST">
+
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
+
+
+                <button class="w-100 btn btn-lg btn-primary" type="submit" name="button">Actualizar</button>
+            </form>
+        </main>
+    </div>
+{% else %}
+    <div id="register">
+        <main class="form-signin position-absolute start-50 top-50 translate-middle" >
+            <h3 style="text-allign: center;">PERFIL DE USUARIO</h3>
+            <h6 style="text-allign: center;">Usted no se encuentra logueado, por favor inicie sesión</h6>
+        </main>
+    </div>
+{% endif %}
+
+<script type="text/javascript">
+    document.getElementById("id_first_name").className = "form-control";
+    document.getElementById("id_last_name").className = "form-control";
+    document.getElementById("id_email").className = "form-control";
+    document.getElementById("id_dni").className = "form-control";
+    document.getElementById("id_obra_social").className = "form-control";
+    document.getElementById("id_n_obra_social").className = "form-control";
+    document.getElementById("id_fecha_nacimiento_day").className = "form-control";
+    document.getElementById("id_fecha_nacimiento_month").className = "form-control";
+    document.getElementById("id_fecha_nacimiento_year").className = "form-control";
+    document.getElementById("id_telefono").className = "form-control";
+</script>
+
+{% endblock %}

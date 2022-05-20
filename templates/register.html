@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+<title>{% block title %} Registro {% endblock %}</title>
+
+      {% block navbar %}
+        <li><a class="nav-link scrollto active" href="{% url 'turnos:index' %}#hero">Inicio</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#about">Nosotros</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#services">Especialidades</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#contact">Contacto</a></li>
+      {% endblock %}
+
+    {% block button %}
+    <a href="{% url 'turnos:login' %}" class="appointment-btn scrollto">Iniciar Sesion</a>
+    {% endblock %}
+
+
+
+    {% block content %}
+        <div>
+            <main class="form-signin w-100 container-fluid" >
+                <form class ="form" method="POST">
+
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+
+                    <button class="w-100 btn btn-lg btn-primary" type="submit" name="button">Registrarse</button>
+                </form>
+            </main>
+        </div>
+        <script type="text/javascript">
+            document.getElementById("id_username").className = "form-control";
+            document.getElementById("id_email").className = "form-control";
+            document.getElementById("id_first_name").className = "form-control";
+            document.getElementById("id_last_name").className = "form-control";
+            document.getElementById("id_password1").className = "form-control";
+            document.getElementById("id_password2").className = "form-control";
+        </script>
+    {% endblock %}

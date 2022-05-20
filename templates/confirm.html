@@ -1,0 +1,41 @@
+{% extends "base.html"%}
+
+<title>{% block title %} Cuenta {% endblock %}</title>
+
+    {% block navbar %}
+        <li><a class="nav-link scrollto active" href="{% url 'turnos:index' %}#hero">Inicio</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#about">Nosotros</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#services">Especialidades</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#contact">Contacto</a></li>
+    {% endblock %}
+
+
+    {% block button %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'turnos:account' %}" class="appointment-btn scrollto">Mi Perfil</a>
+    <a href="{% url 'turnos:logout' %}" class="appointment-btn scrollto">Cerrar Sesion</a>
+    {% endif %}
+    {% endblock %}
+
+
+    {% block content %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 class="display-1">Turno Confirmado</h1>
+        <h6 class="h4">Su turno con el médico <strong>{{medico}}</strong> el día <strong>{{turno|date:'SHORT_DATE_FORMAT' }}</strong> a las <strong>{{turno|date:'G:i'}}</strong> horas ha sido reservado.</h6>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+    {% endblock %}

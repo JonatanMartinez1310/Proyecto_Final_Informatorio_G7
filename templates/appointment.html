@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+<title>{% block title %} Selección Médicos {% endblock %}</title>
+
+    {% block navbar %}
+        <li><a class="nav-link scrollto active" href="{% url 'turnos:index' %}#hero">Inicio</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#about">Nosotros</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#services">Especialidades</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#contact">Contacto</a></li>
+    {% endblock %}
+
+
+    {% block button %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'turnos:account' %}" class="appointment-btn scrollto">Mi Perfil</a>
+    <a href="{% url 'turnos:logout' %}" class="appointment-btn scrollto">Cerrar Sesion</a>
+    {% endif %}
+    {% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<section>
+    <form class="form" action="{% url 'turnos:confirm' %}" method="POST">
+        {% csrf_token %}
+
+        {% if turnos %}
+            {% for turno in turnos %}
+                <div class="form-check">
+                    <input class="form-check-input "  type="radio" name="turno_id" id="flexRadioDefault1" value="{{turno.id}}">
+                    <label class="form-check-label" for="flexRadioDefault1">
+                    {{turno.fecha_hora}}
+                    </label>
+                </div>
+            {% endfor %}
+        <input type="submit" value="Sacar Turno" class="btn btn-primary" style="text-align:center">
+        {% else %}
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="turno_id" id="flexRadioCheckedDisabled" checked disabled>
+                    <label class="form-check-label" for="flexRadioCheckedDisabled">
+                    No hay turnos disponibles.
+                    </label>
+                </div>
+        <input type="submit" value="Sacar Turno" class="btn btn-primary" style="text-align:center" disabled>
+        {% endif %}
+    </form>
+</section>
+{% endblock %}

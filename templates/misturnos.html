@@ -1,0 +1,78 @@
+{% extends "base.html"%}
+
+<title>{% block title %} Cuenta {% endblock %}</title>
+
+    {% block navbar %}
+        <li><a class="nav-link scrollto active" href="{% url 'turnos:index' %}#hero">Inicio</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#about">Nosotros</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#services">Especialidades</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#contact">Contacto</a></li>
+    {% endblock %}
+
+
+    {% block button %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'turnos:account' %}" class="appointment-btn scrollto">Mi Perfil</a>
+    <a href="{% url 'turnos:logout' %}" class="appointment-btn scrollto">Cerrar Sesion</a>
+    {% endif %}
+    {% endblock %}
+
+
+    {% block content %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <h1 style="text-align:center">MIS TURNOS</h1>
+        <br>
+        <br>
+        <table class="table table-striped" style="text-align:center">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Médico</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Hora</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for e in turnos %}
+                <tr>
+                    <th scope="row"></th>
+                    <td>{{e.matricula_id.nombre}}</td>
+                    <td>{{e.fecha_hora|date:'SHORT_DATE_FORMAT' }}</td>
+                    <td>{{e.fecha_hora|date:'G:i'}}</td>
+                    <td>
+                        <div class="btn-group">
+                            <form class="" action="{% url 'turnos:edit'%}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="turno_id" value={{e.id}}>
+                                <button class="btn btn-primary" type="submit" name="button">Editar</button>
+                            </form>
+                            <form class="" action="{% url 'turnos:delete'%}" method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="turno_id" value={{e.id}}>
+                                <button class="btn btn-primary" type="submit" name="button">Borrar</button>
+                            </form>
+
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+    {% endblock %}

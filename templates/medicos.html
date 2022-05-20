@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+<title>{% block title %} Selección Médicos {% endblock %}</title>
+
+    {% block navbar %}
+        <li><a class="nav-link scrollto active" href="{% url 'turnos:index' %}#hero">Inicio</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#about">Nosotros</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#services">Especialidades</a></li>
+        <li><a class="nav-link scrollto" href="{% url 'turnos:index' %}#contact">Contacto</a></li>
+    {% endblock %}
+
+
+    {% block button %}
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'turnos:account' %}" class="appointment-btn scrollto">Mi Perfil</a>
+    <a href="{% url 'turnos:logout' %}" class="appointment-btn scrollto">Cerrar Sesion</a>
+    {% endif %}
+    {% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<section>
+    <form class="form" action="{% url 'turnos:appointment' %}" method="POST">
+        {% csrf_token %}
+        <select name="matricula" class="form-select" aria-label="Default select example">
+            <option selected>Elige un Médico</option>
+            {% for medico in object_list %}
+            <option value="{{medico.matricula}}">{{medico.nombre}} - {{medico.especialidad}}</option>
+            {% endfor %}
+        </select>
+
+
+        <input type="submit" value="Filtrar" class="btn btn-primary" style="align:center;">
+    </form>
+
+</section>
+{% endblock %}
